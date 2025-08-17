@@ -1,0 +1,27 @@
+@use "variables";
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin brand-button {
+  background-color: variables.$color-accent;
+  color: variables.$color-white;
+  font-family: variables.$font-heading;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color variables.$transition-base;
+
+  &:hover {
+    background-color: darken(variables.$color-accent, 10%);
+  }
+}
+
+@mixin hover {
+  transition: background-color variables.$transition-base;
+  background-color: variables.$color-header-hover;
+}

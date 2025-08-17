@@ -1,0 +1,59 @@
+@use "../../styles/variables";
+@use "../../styles/mixins";
+
+.Logo {
+  margin-left: 5vw;
+  @include mixins.flex-center;
+}
+
+.Navigate__buttons {
+  color: variables.$color-white;
+  font-family: "Roboto Condensed", sans-serif;
+  &:hover {
+    transition: color 0.3s;
+    color: variables.$color-accent;
+  }
+}
+
+.Navigate {
+  box-sizing: border-box;
+  @include mixins.flex-center;
+  gap: 12px;
+  margin-right: 3vw;
+}
+
+.Navigate__login {
+  margin-left: 30px;
+}
+
+.Header {
+  background-color: variables.$color-primary;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  gap: 4vw;
+  &:hover {
+    @include mixins.hover;
+  }
+}
+
+.Catalog {
+  cursor: pointer;
+  @include mixins.flex-center;
+  gap: 10px;
+  border: solid 1px white;
+  border-radius: 10px;
+  padding: 5px 10px;
+  &:hover {
+    @include mixins.hover;
+    transition: 200ms;
+    background-color: variables.$color-accent;
+  }
+}
+
+.Catalog__button {
+  color: variables.$color-white;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 1em;
+}
+

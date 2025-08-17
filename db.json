@@ -1,0 +1,21 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "tralala@mail.ru",
+      "phoneNumber": "+79998887766",
+      "password": "123"
+    },
+    {
+      "email": "ratata@mail.ru",
+      "password": "$2a$10$Qzfbrzhv55fHrU8XnkKTvuKOnDe4aG7ea9YNBzjE9aq8Pd.iVzR76",
+      "id": 2
+    },
+    {
+      "email": "ratat@mail.ru",
+      "password": "$2a$10$wFPrEgFiOOkhrTurj2BE8ukW3bDdWlJlG5rx2SvNg/Q66HLnUy62e",
+      "phoneNumber": "+79998887766",
+      "id": 3
+    }
+  ]
+}
