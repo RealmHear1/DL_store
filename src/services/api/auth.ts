@@ -35,6 +35,11 @@ export const registerUser = async (data: RegisterData): Promise<AuthResponse> =>
     throw error
   }
 }
+// () => registerUser({
+//   email: 'ratat@mail.ru',
+//   password: '1234',
+//   phoneNumber: '+79998887766'
+// })
 
 export const loginUser = async (data: LoginData): Promise<AuthResponse> => {
   try {
@@ -50,3 +55,7 @@ export const loginUser = async (data: LoginData): Promise<AuthResponse> => {
     throw error;
   }
 }
+// () => loginUser({
+//   email: 'ratat@mail.ru',
+//   password: '1234'
+// })

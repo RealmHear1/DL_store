@@ -1,5 +1,4 @@
 .Search__input {
-  width: 100%;
   border: none;
   outline: none;
   box-shadow: none;
@@ -8,34 +7,8 @@
   padding: 0 8px;
   margin: 1.5px;
   font-family: "Roboto Condensed", sans-serif;
-  font-size: 1em;
-}
-
-.Search__button {
-  width: 70px;
-  height: 38px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background-color: #FF6B35;
-  color: #FF6B35;
-  margin-right: 1.5px;
-}
-.Search__button:hover {
-  transition: all 0.3s;
-  background-color: #ff4802;
-  color: #ff4802;
-}
-
-.Flex__container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 8px;
-  background-color: #FF6B35;
-  width: 50vw;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /*# sourceMappingURL=MyInput.module.css.map */
