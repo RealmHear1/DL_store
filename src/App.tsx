@@ -1,15 +1,14 @@
 import Header from "./components/Header/Header.tsx";
 import Modal from "./components/Modal/Modal.tsx";
-import {useState} from "react";
+import { useAuthObserver } from "./hooks/useAuthObserver.ts";
 
 function App() {
-
-  const [isActive, setIsActive] = useState(false)
+  useAuthObserver();
 
   return (
     <div>
-      <Header isActive={isActive} setIsActive={setIsActive}/>
-      <Modal isActive={isActive} setIsActive={setIsActive}/>
+      <Header />
+      <Modal />
     </div>
   )
 }
