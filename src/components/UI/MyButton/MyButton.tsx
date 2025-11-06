@@ -2,7 +2,7 @@ import * as React from "react";
 import classes from './MyButton.module.scss'
 
 interface Props {
-  onClick?: () => void;
+  onClick?: (...args: any[]) => any;
   children?: React.ReactNode;
   className?: string;
 }
