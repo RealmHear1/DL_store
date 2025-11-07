@@ -1,0 +1,9 @@
+.productCard {
+  width: 250px;
+  height: 340px;
+  margin: 50px 100px;
+  border: solid 3px #FF6B35;
+  border-radius: 10px;
+}
+
+/*# sourceMappingURL=ProductCard.module.css.map */
