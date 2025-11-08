@@ -1,9 +1,49 @@
-.productCard {
+.product__card {
   width: 250px;
   height: 340px;
-  margin: 50px 100px;
-  border: solid 3px #FF6B35;
   border-radius: 10px;
+  margin-right: auto;
+}
+
+.product__card-image {
+  width: 250px;
+  height: 250px;
+  background-color: #eef0f0;
+  border-radius: 10px;
+}
+
+.product__card-price {
+  display: flex;
+  column-gap: 10px;
+  margin-top: 7px;
+  font-size: 1.3rem;
+  color: #ff4802;
+  margin-bottom: 7px;
+}
+
+.product__card-discount {
+  display: flex;
+  column-gap: 3px;
+  font-size: 0.9rem;
+  align-items: end;
+}
+
+.product__card-price--old {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.product__card-title {
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+.product__card-title:hover {
+  color: #FF6B35;
+  cursor: pointer;
+}
+
+.product__card-rating {
+  margin-top: 7px;
 }
 
 /*# sourceMappingURL=ProductCard.module.css.map */

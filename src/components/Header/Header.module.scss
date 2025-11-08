@@ -29,6 +29,10 @@
 .Header {
   background-color: variables.$color-primary;
   height: 80px;
+  margin-inline: auto;
+  width: 96vw;
+  border-bottom-right-radius: 35px;
+  border-bottom-left-radius: 35px;
   display: flex;
   align-items: center;
   gap: 4vw;

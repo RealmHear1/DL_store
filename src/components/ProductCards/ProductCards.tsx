@@ -1,7 +1,6 @@
 import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
 import ProductCard from "../UI/ProductCard/ProductCard.tsx";
-import classes from "../UI/ProductCard/ProductCard.module.scss";
-import MyButton from "../UI/MyButton/MyButton.tsx";
+import classes from "./ProductCards.module.scss";
 import {
   type ProductData,
   productSlice
@@ -23,7 +22,7 @@ const ProductCards = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await productCardResponse(10)
+        const data = await productCardResponse(1000)
         dispatch(setProducts(data))
       } catch (e) {
         console.error(e)
@@ -33,8 +32,11 @@ const ProductCards = () => {
   }, [])
 
   return (
-    <div>
-      {products.map((product) => <ProductCard />)}
+    <div className={`${classes['product__cards--container']}`}>
+      {products.map((product: ProductData) => <ProductCard
+        key={product.id} title={product.title} thumbnail={product.thumbnail}
+        price={product.price} rating={product.rating} discountPercentage={product.discountPercentage}/>)
+      }
     </div>
   );
 };

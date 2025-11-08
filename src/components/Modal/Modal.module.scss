@@ -55,7 +55,7 @@
   font-family: "Roboto Condensed", sans-serif;
   &:hover {
     color: variables.$color-white;
-    background-color: #ff4802;
+    background-color: variables.$color-more-accent;
     transition: background-color 0.3s;
   }
 }

@@ -1,3 +1,16 @@
-
+.product__cards--container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 96vw;
+  border-radius: 35px;
+  margin-inline: auto;
+  margin-top: 20px;
+  background-color: #FFFFFF;
+  padding-left: 38px;
+  padding-top: 38px;
+  box-sizing: border-box;
+  row-gap: 30px;
+}
 
 /*# sourceMappingURL=ProductCards.module.css.map */

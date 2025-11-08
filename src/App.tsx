@@ -1,16 +1,16 @@
 import Header from "./components/Header/Header.tsx";
 import Modal from "./components/Modal/Modal.tsx";
 import { useAuthObserver } from "./hooks/useAuthObserver.ts";
-import ProductCard from "./components/UI/ProductCard/ProductCard.tsx";
+import ProductCards from "./components/ProductCards/ProductCards.tsx";
 
 function App() {
   useAuthObserver();
 
   return (
-    <div>
+    <div className='background__color'>
       <Header/>
       <Modal/>
-      <ProductCard/>
+      <ProductCards/>
     </div>
   )
 }

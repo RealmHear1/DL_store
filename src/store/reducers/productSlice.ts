@@ -1,11 +1,12 @@
 import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
 
 export interface ProductData {
-  id: number | null
+  id?: number | null
   title: string | null
   price: number | null
   thumbnail: string | null
   rating: number | null
+  discountPercentage: number | null
   brand?: string | null
 }
 
