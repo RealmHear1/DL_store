@@ -7,6 +7,32 @@
   margin-right: auto;
 }
 
+.link_container {
+  position: relative;
+}
+
+.favourite__icon {
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  right: 10px;
+  bottom: 215px;
+}
+
+.favourite__button {
+  color: variables.$color-white;
+  font-family: "Roboto Condensed", sans-serif;
+  &:hover {
+    transition: color 0.3s;
+    color: variables.$color-accent;
+  }
+}
+
+.favourite__button--clicked {
+  transition: color 0.3s;
+  color: variables.$color-more-accent;
+}
+
 .product__card-image {
   width: 250px;
   height: 250px;

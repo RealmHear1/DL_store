@@ -13,11 +13,13 @@ export interface ProductData {
 export interface ProductState {
   products: ProductData[]
   isLoading: boolean | null
+  favorites: number[]
 }
 
 const initialState: ProductState = {
   products: [],
-  isLoading: null
+  isLoading: null,
+  favorites: [],
 }
 
 export const productSlice = createSlice({
@@ -32,6 +34,14 @@ export const productSlice = createSlice({
     },
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload
+    },
+    toggleFavorite: (state, action: PayloadAction<number>) => {
+      const id = action.payload;
+      if (state.favorites.includes(id)) {
+        state.favorites = state.favorites.filter(favId => favId !== id);
+      } else {
+        state.favorites.push(id);
+      }
     },
   }
 })

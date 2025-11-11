@@ -14,7 +14,7 @@ const ProductCards = () => {
   const dispatch = useAppDispatch()
   const {setProducts, addProducts, setIsLoading} = productSlice.actions
   const {products, isLoading} = useAppSelector(state => state.productReducer)
-  const [page, setPage] = useState<number>(2)
+  const [page, setPage] = useState<number>(1)
 
   const divObservedElement = useRef<HTMLDivElement | null>(null)
 
@@ -35,7 +35,7 @@ const ProductCards = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (page === 2) return;
+    if (page === 1) return;
     const loadMoreProducts = async () => {
       try {
         const skip = page * LIMIT;
@@ -74,7 +74,7 @@ const ProductCards = () => {
   return (
     <div className={`${classes['product__cards--container']}`}>
       {products.map((product: ProductData) => <ProductCard
-        key={product.id} title={product.title} thumbnail={product.thumbnail}
+        key={product.id} title={product.title} thumbnail={product.thumbnail} id={product.id}
         price={product.price} rating={product.rating} discountPercentage={product.discountPercentage}/>)
       }
       {isLoading && (
