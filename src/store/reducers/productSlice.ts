@@ -12,10 +12,12 @@ export interface ProductData {
 
 export interface ProductState {
   products: ProductData[]
+  isLoading: boolean | null
 }
 
 const initialState: ProductState = {
-  products: []
+  products: [],
+  isLoading: null
 }
 
 export const productSlice = createSlice({
@@ -27,7 +29,10 @@ export const productSlice = createSlice({
     },
     addProducts: (state, action: PayloadAction<ProductData[]>) => {
       state.products.push(...action.payload)
-    }
+    },
+    setIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload
+    },
   }
 })
 

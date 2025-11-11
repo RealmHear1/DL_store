@@ -13,4 +13,12 @@
   row-gap: 30px;
 }
 
+.loader__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+}
+
 /*# sourceMappingURL=ProductCards.module.css.map */
