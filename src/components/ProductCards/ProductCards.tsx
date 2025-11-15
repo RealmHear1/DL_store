@@ -3,73 +3,40 @@ import ProductCard from "../UI/ProductCard/ProductCard.tsx";
 import classes from "./ProductCards.module.scss";
 import {
   type ProductData,
-  productSlice
 } from "../../store/reducers/productSlice.ts";
 import {useEffect, useRef, useState} from "react";
-import {LIMIT} from "../../utils/CONSTANTS.ts";
 import Loader from "../UI/Loader/Loader.tsx";
+import {
+  loadInitialProducts,
+  loadMoreProducts
+} from "../../API/GetService/ProductCardsService.ts";
+import {useInfiniteScroll} from "../../hooks/useInfiniteScroll.ts";
 
 const ProductCards = () => {
 
-  const dispatch = useAppDispatch()
-  const {setProducts, addProducts, setIsLoading} = productSlice.actions
-  const {products, isLoading} = useAppSelector(state => state.productReducer)
+  const {products, isLoading, hasMore} = useAppSelector(state => state.productReducer)
   const [page, setPage] = useState<number>(1)
-
+  const dispatch = useAppDispatch()
   const divObservedElement = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    const loadInitialProducts = async () => {
-      try {
-        dispatch(setIsLoading(true))
-        const response = await fetch(`https://dummyjson.com/products?limit=${LIMIT * 2}`);
-        const data = await response.json()
-        dispatch(setProducts(data.products))
-      } catch (error) {
-        console.error('Ошибка при загрузке начальных товаров:', error)
-      } finally {
-        dispatch(setIsLoading(false));
-      }
-    }
-    loadInitialProducts()
+    loadInitialProducts(dispatch)
   }, [dispatch]);
 
   useEffect(() => {
     if (page === 1) return;
-    const loadMoreProducts = async () => {
-      try {
-        const skip = page * LIMIT;
-        dispatch(setIsLoading(true))
-        const response = await fetch(`https://dummyjson.com/products?limit=${LIMIT}&skip=${skip}`);
-        const data = await response.json()
-        dispatch(addProducts(data.products))
-      } catch (error) {
-        console.error('Ошибка при загрузке дополнительных товаров:', error)
-      } finally {
-        dispatch(setIsLoading(false));
-      }
-    }
-    loadMoreProducts()
+    loadMoreProducts(page, dispatch, hasMore)
   }, [page, dispatch])
 
-  useEffect(() => {
-    if (!divObservedElement.current) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting && !isLoading) {
-          setPage((prev) => prev + 1);
-        }
-      },
-      {
-        root: null,
-        rootMargin: '100px',
-        threshold: 0.1,
+  useInfiniteScroll<HTMLDivElement>({
+      isLoading: isLoading,
+      targetRef: divObservedElement,
+    onIntersect: () => {
+      if (hasMore) {
+        setPage((prevState) => prevState + 1);
       }
-    );
-    observer.observe(divObservedElement.current);
-    return () => observer.disconnect();
-  }, []);
+    }
+  })
 
   return (
     <div className={`${classes['product__cards--container']}`}>

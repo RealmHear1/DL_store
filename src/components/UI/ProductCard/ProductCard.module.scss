@@ -34,6 +34,7 @@
 }
 
 .product__card-image {
+  user-select: none;
   width: 250px;
   height: 250px;
   background-color: #eef0f0;
@@ -69,4 +70,23 @@
 
 .product__card-rating {
   margin-top: 7px;
+  position: relative;
+}
+
+.product__card-storage {
+  position: absolute;
+  right: 15px;
+  width: 100px;
+  height: 30px;
+  border: solid 2px variables.$color-primary;
+  border-radius: 8px;
+  &:hover {
+    transition: all 0.3s;
+    background-color: variables.$color-accent;
+  }
+}
+
+.product__card-storage--in {
+  transition: background-color 0.3s;
+  background-color: variables.$color-more-accent;
 }

@@ -32,6 +32,7 @@
 }
 
 .product__card-image {
+  user-select: none;
   width: 250px;
   height: 250px;
   background-color: #eef0f0;
@@ -70,6 +71,25 @@
 
 .product__card-rating {
   margin-top: 7px;
+  position: relative;
+}
+
+.product__card-storage {
+  position: absolute;
+  right: 15px;
+  width: 100px;
+  height: 30px;
+  border: solid 2px #141524;
+  border-radius: 8px;
+}
+.product__card-storage:hover {
+  transition: all 0.3s;
+  background-color: #FF6B35;
+}
+
+.product__card-storage--in {
+  transition: background-color 0.3s;
+  background-color: #ff4802;
 }
 
 /*# sourceMappingURL=ProductCard.module.css.map */

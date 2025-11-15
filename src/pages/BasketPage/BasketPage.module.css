@@ -1,0 +1,40 @@
+.basket__container {
+  width: 96vw;
+  border-radius: 35px;
+  margin-top: 20px;
+  margin-inline: auto;
+  background-color: #FFFFFF;
+}
+
+.basket__container-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.basket-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.1rem;
+  margin-bottom: 70px;
+}
+
+.basket__icon {
+  margin-top: 30px;
+}
+
+.bold__text {
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.text__opacity {
+  opacity: 0.7;
+  margin-top: 5px;
+  font-size: 1rem;
+}
+
+/*# sourceMappingURL=BasketPage.module.css.map */

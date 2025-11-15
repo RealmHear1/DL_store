@@ -1,4 +1,5 @@
-import  classes from "./ProductCard.module.scss"
+import  classes from "../ProductCard/ProductCard.module.scss"
+import classesBasket from "./BasketCard.module.scss"
 import {
   type ProductData,
   productSlice
@@ -6,15 +7,20 @@ import {
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux.ts";
 import MyButton from "../MyButton/MyButton.tsx";
 import {useNavigate} from "react-router-dom";
+import {useState} from "react";
+import {
+  handleChange, handleClickDecrement,
+  handleClickIncrement
+} from "../../../utils/handleFunctions.ts";
 
-const ProductCard = ({price, title, rating, thumbnail, discountPercentage, id}: ProductData) => {
+const BasketCard = ({price, title, thumbnail, discountPercentage, id, stock}: ProductData) => {
 
-  const {favorites, storage} = useAppSelector(state => state.productReducer)
   const dispatch = useAppDispatch()
-  const {toggleFavorite, toggleStorage} = productSlice.actions
+  const {favorites, storage} = useAppSelector(state => state.productReducer)
   const isFavourite = favorites.includes(id!)
-  const inStorage = storage.includes(id!)
+  const {toggleFavorite, toggleStorage} = productSlice.actions
   const navigate = useNavigate()
+  const [countProduct, setCountProduct] = useState<number>(1)
 
   const handleClick = (e: any) => {
     e.preventDefault();
@@ -26,11 +32,7 @@ const ProductCard = ({price, title, rating, thumbnail, discountPercentage, id}: 
     navigate(`/catalog/${id}`)
   }
 
-  const addToBasket = () => {
-    inStorage ?
-      navigate(`/basket`) :
-      dispatch(toggleStorage(id!))
-  }
+
 
   return (
     <div className={classes.product__card}>
@@ -46,24 +48,36 @@ const ProductCard = ({price, title, rating, thumbnail, discountPercentage, id}: 
           price ?
             <div className={`${classes['product__card-discount']}`}>
               <div className={`${classes['product__card-price--old']}`}>{`${discountPercentage ? (price*100/(100-discountPercentage)).toFixed(0) : ''}.99$`}</div>
-              <div>{`–${discountPercentage?.toFixed(0)}%`}</div>
             </div> :
             ''
         }
       </div>
       <span className={`${classes['product__card-title']}`}>{title}</span>
-      <div className={`${classes['product__card-rating']}`}>
-        <svg fill="#FF6B35" height="14px" width="14px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 511.987 511.987" xmlSpace="preserve" stroke="#ffd500"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M510.991,185.097c-2.475-7.893-9.301-13.632-17.515-14.72l-148.843-19.84L275.087,11.316 c-7.211-14.464-30.976-14.464-38.187,0l-69.547,139.221l-148.843,19.84c-8.213,1.088-15.04,6.827-17.515,14.72 c-2.496,7.872-0.213,16.512,5.867,22.101l107.392,98.923L85.604,486.857c-1.365,8.469,2.517,16.96,9.835,21.483 c7.339,4.501,16.661,4.203,23.616-0.811l136.939-97.792l136.939,97.792c3.691,2.667,8.043,3.989,12.395,3.989 c3.883,0,7.765-1.067,11.221-3.179c7.317-4.523,11.2-13.013,9.835-21.483l-28.651-180.736l107.392-98.923 C511.204,201.609,513.487,192.969,510.991,185.097z"></path> </g> </g> </g></svg>
-        <span>{` ${rating}`}</span>
-        <MyButton onClick={addToBasket} className={`${classes['product__card-storage']} ${inStorage ? classes['product__card-storage--in'] : ''}`}>
-          {inStorage ?
-            <p>В корзине</p> :
-            <p>В корзину</p>
-          }
-        </MyButton>
-      </div>
+      {stock ?
+        <div className={classesBasket.product__amount}>
+          <div className={classesBasket.operations__container} onClick={() => handleClickDecrement(countProduct, setCountProduct)}>
+            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6 12L18 12" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
+          </div>
+          <input maxLength={2} type='text' onChange={(event) => handleChange(event, setCountProduct, stock)} value={countProduct} autoComplete='off' className={`${classesBasket['product__amount-input']}`}/>
+          <div className={classesBasket.operations__container} onClick={() => handleClickIncrement(countProduct, setCountProduct, stock)}>
+            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M12 4V20" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
+          </div>
+        </div> :
+        <div>
+          Нет в наличии
+        </div>
+      }
+      <span>
+        {
+          (stock! < 100 && stock! > 0) ?
+            <p>{`Осталось ${stock} ${(stock! % 10 === 1) ? 'товар' : (stock! % 10 === 2 || stock! % 10 === 3 || stock! % 10 === 4) ? 'товара' :
+              'товаров'
+            }`}</p> :
+            ''
+        }
+      </span>
     </div>
   );
 };
 
-export default ProductCard;
+export default BasketCard;
