@@ -41,7 +41,7 @@ const ProductCards = () => {
   return (
     <div className={`${classes['product__cards--container']}`}>
       {products.map((product: ProductData) => <ProductCard
-        key={product.id} title={product.title} thumbnail={product.thumbnail} id={product.id}
+        key={product.id} title={product.title} thumbnail={product.thumbnail} id={product.id} stock={product.stock}
         price={product.price} rating={product.rating} discountPercentage={product.discountPercentage}/>)
       }
       {isLoading && (

@@ -2,11 +2,13 @@ import React from "react";
 
 export const handleChange = (e: React.ChangeEvent<HTMLInputElement>, func: any, stock: number) => {
   let value = Number(e.target.value);
-  if (value === 0) value = 1;
-  if (value < 0) value = 0;
-  if (value > 99) value = 99;
-  if (value >= stock) value = stock;
-  func(value);
+  if (/^\d*$/.test(value.toString())) {
+    if (value === 0) value = 1;
+    if (value < 0) value = 0;
+    if (value > 99) value = 99;
+    if (value >= stock) value = stock;
+    func(value);
+  } else return
 };
 
 export const handleClickIncrement = (value: number, func: any, stock: number) => {

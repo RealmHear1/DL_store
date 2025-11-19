@@ -2,11 +2,13 @@ import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import modalReducer from './reducers/modalSlice.ts'
 import authReducer from './reducers/authSlice.ts'
 import productReducer from './reducers/productSlice.ts'
+import basketReducer from './reducers/basketSlice.ts'
 
 const rootReducer = combineReducers({
   modalReducer,
   authReducer,
   productReducer,
+  basketReducer,
 })
 
 export const setupStore = () => {

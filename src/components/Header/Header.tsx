@@ -3,15 +3,17 @@ import MyButton from "../UI/MyButton/MyButton.tsx";
 import Search from "../Search/Search.tsx";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
 import {modalSlice} from "../../store/reducers/modalSlice.ts";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 const Header = () => {
   const dispatch = useAppDispatch();
   const {changeModalState} = modalSlice.actions;
   const {uid} = useAppSelector(state => state.authReducer)
+  const {pathname} = useLocation();
+  const isSticky = pathname === '/';
 
   return (
-    <header className={classes.Header}>
+    <header className={`${classes.Header} ${isSticky ? classes['header-sticky'] : ''}`}>
       <Link to='/'>
         <MyButton
           className={classes.Logo}

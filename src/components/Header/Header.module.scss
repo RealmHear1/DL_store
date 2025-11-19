@@ -36,13 +36,17 @@
   display: flex;
   align-items: center;
   gap: 4vw;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  
 
   &:hover {
     @include mixins.hover;
   }
+}
+
+.header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .Catalog {

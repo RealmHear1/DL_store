@@ -7,7 +7,7 @@ import {useAppDispatch, useAppSelector} from "../../../hooks/redux.ts";
 import MyButton from "../MyButton/MyButton.tsx";
 import {useNavigate} from "react-router-dom";
 
-const ProductCard = ({price, title, rating, thumbnail, discountPercentage, id}: ProductData) => {
+const ProductCard = ({price, title, rating, thumbnail, discountPercentage, id, stock}: ProductData) => {
 
   const {favorites, storage} = useAppSelector(state => state.productReducer)
   const dispatch = useAppDispatch()
@@ -33,7 +33,7 @@ const ProductCard = ({price, title, rating, thumbnail, discountPercentage, id}: 
   }
 
   return (
-    <div className={classes.product__card}>
+    <div className={`${classes.product__card} ${(stock === 0) ? classes['product__card-stock--zero'] : ''}`}>
       <MyButton onClick={openProductCardInfo} className={`${classes['product__card-image']} ${classes.link_container}`}>
         <img alt='На фотосессии' src={`${thumbnail}`} className={`${classes['product__card-image']}`}/>
         <div className={classes.favourite__icon}>
@@ -45,8 +45,8 @@ const ProductCard = ({price, title, rating, thumbnail, discountPercentage, id}: 
         {
           price ?
             <div className={`${classes['product__card-discount']}`}>
-              <div className={`${classes['product__card-price--old']}`}>{`${discountPercentage ? (price*100/(100-discountPercentage)).toFixed(0) : ''}.99$`}</div>
-              <div>{`–${discountPercentage?.toFixed(0)}%`}</div>
+              <div className={`${classes['product__card-price--old']}`}>{`${discountPercentage ? (price*100/(100-discountPercentage)).toFixed(2) : ''}$`}</div>
+              <div>{`–${discountPercentage?.toFixed(1)}%`}</div>
             </div> :
             ''
         }
@@ -56,9 +56,11 @@ const ProductCard = ({price, title, rating, thumbnail, discountPercentage, id}: 
         <svg fill="#FF6B35" height="14px" width="14px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 511.987 511.987" xmlSpace="preserve" stroke="#ffd500"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M510.991,185.097c-2.475-7.893-9.301-13.632-17.515-14.72l-148.843-19.84L275.087,11.316 c-7.211-14.464-30.976-14.464-38.187,0l-69.547,139.221l-148.843,19.84c-8.213,1.088-15.04,6.827-17.515,14.72 c-2.496,7.872-0.213,16.512,5.867,22.101l107.392,98.923L85.604,486.857c-1.365,8.469,2.517,16.96,9.835,21.483 c7.339,4.501,16.661,4.203,23.616-0.811l136.939-97.792l136.939,97.792c3.691,2.667,8.043,3.989,12.395,3.989 c3.883,0,7.765-1.067,11.221-3.179c7.317-4.523,11.2-13.013,9.835-21.483l-28.651-180.736l107.392-98.923 C511.204,201.609,513.487,192.969,510.991,185.097z"></path> </g> </g> </g></svg>
         <span>{` ${rating}`}</span>
         <MyButton onClick={addToBasket} className={`${classes['product__card-storage']} ${inStorage ? classes['product__card-storage--in'] : ''}`}>
-          {inStorage ?
-            <p>В корзине</p> :
-            <p>В корзину</p>
+          {(stock === 0) ?
+            <p>Нет в наличии</p> :
+            inStorage ?
+              <p>В корзине</p> :
+              <p>В корзину</p>
           }
         </MyButton>
       </div>
