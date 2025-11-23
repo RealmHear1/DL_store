@@ -1,21 +1,20 @@
 .product__cards--container {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   width: 96vw;
+  justify-content: center;
   border-radius: 35px;
   margin-inline: auto;
   margin-top: 20px;
-  padding-bottom: 50px;
   background-color: #FFFFFF;
-  padding-left: 38px;
-  padding-top: 38px;
+  padding: 38px 38px 38px;
   box-sizing: border-box;
   row-gap: 30px;
+  column-gap: 30px;
 }
 
 .loader__wrapper {
-  width: 100%;
+  grid-column: 1 / -1;
   display: flex;
   justify-content: center;
   align-items: center;

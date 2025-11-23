@@ -1,4 +1,4 @@
-import ProductCards from "../components/ProductCards/ProductCards.tsx";
+import ProductCards from "../../components/ProductCards/ProductCards.tsx";
 
 const HomePage = () => {
   return (

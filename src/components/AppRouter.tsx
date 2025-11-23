@@ -1,7 +1,7 @@
 import {Route, Routes} from "react-router-dom";
-import HomePage from "../pages/HomePage.tsx";
+import HomePage from "../pages/HomePage/HomePage.tsx";
 import OrdersPage from "../pages/OrdersPage.tsx";
-import FavouritesPage from "../pages/FavouritesPage.tsx";
+import FavouritesPage from "../pages/FavouritesPage/FavouritesPage.tsx";
 import BasketPage from "../pages/BasketPage/BasketPage.tsx";
 import ProfilePage from "../pages/ProfilePage.tsx";
 import ProductCardPage from "../pages/ProductCardPage.tsx";
