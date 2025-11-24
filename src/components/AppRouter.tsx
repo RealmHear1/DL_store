@@ -4,7 +4,7 @@ import OrdersPage from "../pages/OrdersPage.tsx";
 import FavouritesPage from "../pages/FavouritesPage/FavouritesPage.tsx";
 import BasketPage from "../pages/BasketPage/BasketPage.tsx";
 import ProfilePage from "../pages/ProfilePage.tsx";
-import ProductCardPage from "../pages/ProductCardPage.tsx";
+import ProductCardPage from "../pages/ProductCardPage/ProductCardPage.tsx";
 
 const AppRouter = () => {
   return (

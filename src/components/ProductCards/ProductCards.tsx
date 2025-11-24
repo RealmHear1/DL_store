@@ -21,6 +21,7 @@ const ProductCards = () => {
 
   useEffect(() => {
     loadInitialProducts(dispatch)
+
   }, [dispatch]);
 
   useEffect(() => {
